@@ -3,23 +3,23 @@
 task_1.MainPage createPage(Class clazz)
 класса task_1.MethodInterception, таким образом что бы проходил тест:
 
-@Retention(java.lang.annotation.RetentionPolicy.RUNTIME)
-@Target({METHOD, TYPE})
-public @interface task_1.Selector {
+    @Retention(java.lang.annotation.RetentionPolicy.RUNTIME)
+    @Target({METHOD, TYPE})
+    public @interface task_1.Selector {
 
     String xpath();
-}
-
-public interface task_1.MainPage {
+    }
+***
+    public interface task_1.MainPage {
 
     @task_1.Selector(xpath = ".//*[@test-attr='input_search']")
     String textInputSearch();
 
     @task_1.Selector(xpath = ".//*[@test-attr='button_search']")
     String buttonSearch();
-}
-
-public class task_1.MethodInterception {
+    }
+***
+    public class task_1.MethodInterception {
 
     @Test
     public void annotationValue() {
@@ -31,30 +31,33 @@ public class task_1.MethodInterception {
 
     private task_1.MainPage createPage(Class clazz) {
         return null;
+        }
     }
-}
+    
 Задание №2 - TestNG,ServiceLoader: Реализуйте перехват параметров анотации TestMethodInfo в тестовом методе и вывод их в консоль. Подключение TestNg Listener нужно сделать через ServiceLoader.
 
-public enum Priority {
-   Blocker, Critical, Major, Minor
-}
 
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.TYPE) //on class level
-public @interface TestMethodInfo {
+    public enum Priority {
+        Blocker, Critical, Major, Minor
+    }
+***
+    @Retention(RetentionPolicy.RUNTIME)
+    @Target(ElementType.TYPE) //on class level
+    public @interface TestMethodInfo {
 
-//Приоритет теста
-Priority priority() default Priority.Major;
+    //Приоритет теста
+    Priority priority() default Priority.Major;
 
-//Автор теста	
-String author() default "Bill Gates";
+    //Автор теста	
+    String author() default "Bill Gates";
 
-//Дата последних изменений в тесте
-String lastModified() default "01.01.2019";
-}
+    //Дата последних изменений в тесте
+    String lastModified() default "01.01.2019";
+    }
 
-@Test
-@TestMethodInfo(priority = Priority.Critical, author = "Test user", lastModified = "20.08.2019")
-public void annotation() {
-   assertEquals(1, 1);
-}
+***
+    @Test
+    @TestMethodInfo(priority = Priority.Critical, author = "Test user", lastModified = "20.08.2019")
+    public void annotation() {
+        assertEquals(1, 1);
+    }
